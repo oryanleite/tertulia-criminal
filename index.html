@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tertúlia Criminal Curitiba · 20 e 21 de novembro de 2026</title>
-<meta name="description" content="Dois dias de imersão no Tribunal do Júri, em Curitiba. 14 palestrantes das ciências criminais, dois júris simulados completos e 150 vagas. Auditório do Sindimetal/PR, 20 e 21 de novembro de 2026.">
+<meta name="description" content="Imersão em Tribunal do Júri para profissionais do Direito, em Curitiba. 14 palestrantes das ciências criminais, dois júris simulados completos e 150 vagas. Auditório do Sindimetal/PR, 20 e 21 de novembro de 2026.">
 <meta name="theme-color" content="#0b1120">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="Tertúlia Criminal Curitiba · Tribunal do Júri">
-<meta property="og:description" content="Dois dias, dois júris simulados, 14 palestrantes. 20 e 21 de novembro de 2026, Curitiba/PR.">
+<meta property="og:description" content="Imersão em Tribunal do Júri para profissionais do Direito: dois júris simulados e 14 palestrantes. 20 e 21 de novembro de 2026, Curitiba/PR.">
 <!-- DEPLOY STEP: trocar pelos endereços absolutos do site publicado -->
 <meta property="og:image" content="assets/og-image.jpg">
 <meta property="og:url" content="https://tertuliacriminal.br/">
@@ -103,6 +103,11 @@ h2{font-size:clamp(2.1rem,4.4vw,3.4rem)}
 .hero .sub{margin-top:2rem;max-width:52ch;color:var(--text-secondary);font-size:1.15rem}
 .hero .sub strong{color:var(--text-primary);font-weight:500}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2.6rem}
+.hero .meta{list-style:none;display:flex;flex-wrap:wrap;gap:0;margin-top:2.6rem;border-top:1px solid var(--line);max-width:640px}
+.hero .meta li{flex:1 1 0;min-width:150px;padding:1rem 1.2rem 0 0;font-size:.95rem;color:var(--text-primary)}
+.hero .meta li+li{padding-left:1.2rem;border-left:1px solid var(--line)}
+.hero .meta span{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:.25rem}
+@media (max-width:560px){.hero .meta li,.hero .meta li+li{flex-basis:100%;padding:.8rem 0;border-left:0;border-bottom:1px solid var(--line)}}
 .fade-up{opacity:0;transform:translateY(14px);animation:fadeUp 1s var(--ease-out) forwards}
 .d1{animation-delay:.1s}.d2{animation-delay:.85s}.d3{animation-delay:1.05s}.d4{animation-delay:1.3s}
 @keyframes fadeUp{to{opacity:1;transform:none}}
@@ -349,7 +354,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 <section class="hero" id="topo" aria-labelledby="h-hero">
   <div class="wrap">
     <div>
-      <p class="kicker fade-up d1">Curitiba/PR · 20 e 21 de novembro de 2026</p>
+      <p class="kicker fade-up d1">Imersão em Tribunal do Júri para profissionais do Direito</p>
       <h1 id="h-hero">
         <span class="sr">Sete jurados. Uma hora e meia. Uma decisão.</span>
         <span aria-hidden="true">
@@ -358,12 +363,17 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
           <span class="ln"><span>Uma decisão.</span></span>
         </span>
       </h1>
-      <p class="sub fade-up d2">No plenário, a defesa se faz diante de quem vai julgar. A Tertúlia Criminal reúne <strong>14 nomes das ciências criminais</strong> e <strong>dois júris simulados completos</strong> em dois dias de imersão no Tribunal do Júri.</p>
+      <p class="sub fade-up d2">Dois dias feitos para quem atua, ou vai atuar, no plenário. A Tertúlia Criminal reúne advogados e profissionais do Direito com <strong>14 nomes das ciências criminais</strong> e <strong>dois júris simulados completos</strong>: técnica, estratégia e a prática real da advocacia criminal no Júri.</p>
       <div class="ctas fade-up d3">
         <a class="btn" href="#ingressos" data-ticket>Garantir meu lugar
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
         <a class="btn ghost" href="#rito">Como serão os júris</a>
       </div>
+      <ul class="meta fade-up d4" aria-label="Informações do evento">
+        <li><span>Quando</span>20 e 21 de novembro</li>
+        <li><span>Onde</span>Sindimetal/PR, Curitiba</li>
+        <li><span>Vagas</span>150 lugares</li>
+      </ul>
     </div>
 
     <figure class="conselho fade-up d4" id="conselho" aria-hidden="true">
