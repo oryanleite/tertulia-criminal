@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://tertuliacriminal.br/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --canvas:#0b1120;
@@ -34,6 +34,7 @@
   --ease-io:cubic-bezier(.65,0,.35,1);
   --display:"Libre Caslon Display",Georgia,"Times New Roman",serif;
   --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 [hidden]{display:none!important}
@@ -54,6 +55,8 @@ a{color:inherit}
 
 .wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
 .eyebrow{font-size:.9rem;font-weight:600;color:var(--accent)}
+.kicker{font-family:var(--mono);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.kicker.muted{color:var(--text-secondary)}
 h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1}
 h2{font-size:clamp(2rem,4vw,3.1rem)}
 .lede{color:var(--text-secondary);font-size:1.125rem;max-width:56ch}
@@ -108,14 +111,20 @@ h2{font-size:clamp(2rem,4vw,3.1rem)}
 .conselho figcaption b{font-weight:500;color:var(--text-primary)}
 @media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.conselho{justify-self:start;width:min(100%,420px)}}
 
-/* números */
-.nums{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(17,26,44,.55)}
-.nums .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
-.nums .item{padding:1.7rem 1.5rem;border-left:1px solid var(--line);display:flex;align-items:baseline;gap:.8rem}
-.nums .item:first-child{border-left:0;padding-left:0}
-.nums .num{font-family:var(--display);font-size:clamp(2.2rem,3.6vw,3rem);line-height:1}
-.nums .cap{font-size:.95rem;color:var(--text-secondary);line-height:1.3}
-@media (max-width:860px){.nums .wrap{grid-template-columns:1fr 1fr}.nums .item{padding:1.3rem 1rem}.nums .item:nth-child(3){border-left:0;padding-left:0}.nums .item:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+/* ata */
+.ata{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(17,26,44,.55)}
+.ata .wrap{display:grid;grid-template-columns:auto repeat(4,1fr)}
+.ata .label{display:flex;align-items:center;padding:1.8rem 2rem 1.8rem 0;border-right:1px solid var(--line)}
+.ata .item{padding:1.8rem 1.6rem;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:.35rem}
+.ata .item:last-child{border-right:0}
+.ata .num{font-family:var(--display);font-size:clamp(2.4rem,4vw,3.3rem);line-height:1;font-variant-numeric:lining-nums tabular-nums}
+.ata .cap{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary)}
+@media (max-width:860px){
+  .ata .wrap{grid-template-columns:1fr 1fr}
+  .ata .label{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--line);padding:1.2rem 0}
+  .ata .item:nth-child(3){border-right:0}
+  .ata .item:nth-child(2),.ata .item:nth-child(3){border-bottom:1px solid var(--line)}
+}
 
 section{position:relative}
 .sec{padding:clamp(5rem,10vw,8rem) 0}
@@ -130,68 +139,104 @@ section{position:relative}
 .evento .body p.big{font-family:var(--display);font-size:clamp(1.45rem,2.3vw,1.85rem);line-height:1.35;color:var(--text-primary)}
 .pilares{margin-top:2.8rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
 .pilar{border-top:2px solid var(--accent);padding-top:1.2rem}
+.pilar .n{display:block;font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.12em;margin-bottom:.6rem}
 .pilar h3{font-size:1.4rem;margin-bottom:.45rem}
 .pilar p{font-size:.96rem;color:var(--text-secondary)}
 @media (max-width:900px){.evento .wrap{grid-template-columns:1fr}.pilares{grid-template-columns:1fr}}
 
 /* rito */
 .rito{background:var(--paper);color:var(--paper-ink)}
-.rito .eyebrow{color:#7a6233}
+.rito .kicker{color:#7a6233}
+.rito .fls{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--paper-2);position:absolute;right:clamp(1.2rem,3vw,2.5rem);top:2rem}
 .rito .head{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end}
 .rito h2{margin-top:.8rem;max-width:18ch}
 .rito .head p{color:var(--paper-2);max-width:44ch}
 .timeline{position:relative;margin-top:4rem;display:grid;grid-template-columns:repeat(4,1fr)}
-.timeline .track{position:absolute;left:0;right:0;top:.55rem;height:1px;background:rgba(21,28,43,.18)}
+.timeline .track{position:absolute;left:0;right:0;top:1.15rem;height:1px;background:rgba(21,28,43,.18)}
 .timeline .track i{position:absolute;inset:0;background:var(--paper-ink);transform:scaleX(var(--p,0));transform-origin:left}
 .ato{position:relative;padding-right:1.6rem}
-.ato .dot{display:block;width:1.1rem;height:1.1rem;border-radius:50%;border:1.5px solid var(--paper-ink);background:var(--paper);position:relative;z-index:1;transition:background-color .5s var(--ease-out)}
-.ato.on .dot{background:var(--paper-ink)}
+.ato .dot{width:2.3rem;height:2.3rem;border-radius:50%;border:1px solid var(--paper-ink);background:var(--paper);display:grid;place-items:center;font-family:var(--mono);font-size:.75rem;position:relative;z-index:1;transition:background-color .5s var(--ease-out),color .5s var(--ease-out)}
+.ato.on .dot{background:var(--paper-ink);color:var(--paper)}
 .ato h3{font-size:1.5rem;margin:1.3rem 0 .5rem}
 .ato p{font-size:.97rem;color:var(--paper-2);max-width:30ch}
 .ato .art{display:block;margin-top:.8rem;font-size:.82rem;color:#7a6233;font-weight:500}
 @media (max-width:900px){
   .rito .head{grid-template-columns:1fr}
-  .timeline{grid-template-columns:1fr;gap:2.2rem;padding-left:2.4rem}
-  .timeline .track{left:.55rem;right:auto;top:0;bottom:0;width:1px;height:auto}
+  .timeline{grid-template-columns:1fr;gap:2.4rem;padding-left:3.4rem}
+  .timeline .track{left:1.15rem;right:auto;top:0;bottom:0;width:1px;height:auto}
   .timeline .track i{transform:scaleY(var(--p,0));transform-origin:top}
-  .ato .dot{position:absolute;left:-2.4rem;top:.35rem}
+  .ato .dot{position:absolute;left:-3.4rem;top:0}
   .ato h3{margin-top:0}
 }
 
 /* palestrantes */
-.palestrantes .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+.palestrantes .head{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end}
 .palestrantes h2{margin-top:.8rem}
-.palestrantes .lede{margin-top:1.1rem}
-.palestrantes .btn{margin-top:1.8rem}
-.anuncio{border:1px solid var(--line);background:var(--panel);padding:2.4rem;display:flex;gap:1.8rem;align-items:center}
-.anuncio .big{font-family:var(--display);font-size:clamp(4.5rem,9vw,7rem);line-height:.9;color:var(--accent)}
-.anuncio p{color:var(--text-secondary)}
-.anuncio p strong{display:block;color:var(--text-primary);font-weight:500;font-size:1.15rem;margin-bottom:.3rem}
-@media (max-width:900px){.palestrantes .wrap{grid-template-columns:1fr}}
-@media (max-width:480px){.anuncio{flex-direction:column;align-items:flex-start;padding:1.6rem}}
+.palestrantes .head .btn{margin-top:1.4rem}
+.cadeiras{margin-top:3.2rem;display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line);list-style:none}
+.cadeira{background:var(--canvas);aspect-ratio:3/4;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:1rem;overflow:hidden}
+.cadeira .idx{font-family:var(--mono);font-size:.7rem;color:var(--text-secondary);letter-spacing:.12em;position:relative;z-index:1}
+.cadeira svg{width:46%;align-self:center;opacity:.5}
+.cadeira svg *{fill:none;stroke:var(--line-strong);stroke-width:1.2}
+.cadeira .st{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-secondary)}
+.cadeira.conf{padding:0}
+.cadeira.conf picture,.cadeira.conf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.cadeira.conf::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,17,32,.96) 0%,rgba(11,17,32,.82) 26%,rgba(11,17,32,.3) 48%,transparent 64%);pointer-events:none}
+.cadeira.conf .idx{position:absolute;top:.8rem;left:.8rem;color:#e6e2d8;background:rgba(11,17,32,.55);padding:.2rem .45rem}
+.cadeira.conf .who{position:absolute;left:.9rem;right:.9rem;bottom:.9rem;z-index:1}
+.cadeira.conf .who .st{color:var(--accent)}
+.cadeira.conf .who b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(1rem,1.5vw,1.3rem);line-height:1.15;margin-top:.3rem;color:var(--text-primary)}
+.cadeira.fill{display:none}
+@media (max-width:900px){.palestrantes .head{grid-template-columns:1fr}.cadeira{padding:.7rem}.cadeira .st{font-size:.52rem;letter-spacing:.08em}}
+@media (max-width:600px){
+  .cadeira{padding:.4rem;aspect-ratio:3/4}
+  .cadeira .st{display:none}
+  .cadeira svg{width:62%}
+  .cadeira .idx{font-size:.6rem;letter-spacing:.04em}
+  .cadeira.conf{grid-column:1/-1;aspect-ratio:4/3}
+  .cadeira.conf .who b{font-size:1.4rem}
+  .cadeira.conf .who .st{display:block;font-size:.66rem}
+  .cadeira.fill{display:block}
+}
 
 /* ingressos */
 .ingressos{background:rgba(17,26,44,.6);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .ingressos .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:start}
 .ingressos h2{margin-top:.8rem}
-.inclui{list-style:none;margin-top:2rem;display:grid;gap:.7rem}
-.inclui li{display:flex;gap:.8rem;align-items:baseline;color:var(--text-primary)}
-.inclui li::before{content:"";flex:none;width:.85rem;height:.45rem;border-left:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);transform:rotate(-45deg) translateY(-3px)}
-.nota{margin-top:2rem;font-size:.95rem;color:var(--text-secondary);max-width:46ch}
-.nota a{color:var(--accent);text-underline-offset:3px}
 .card{background:var(--canvas);border:1px solid var(--line-strong);border-radius:4px;overflow:hidden}
-.card .top{padding:1.6rem 2rem;border-bottom:1px solid var(--line)}
+.card .top{padding:1.6rem 2rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
 .card .top h3{font-size:1.7rem}
-.card .top p{font-size:.92rem;color:var(--text-secondary);margin-top:.2rem}
-.preco{display:flex;justify-content:space-between;align-items:baseline;padding:1.4rem 2rem;border-bottom:1px solid var(--line)}
+.card .top .kicker{font-size:.68rem}
+.inclui{list-style:none;padding:1.5rem 2rem;display:grid;gap:.65rem;border-bottom:1px solid var(--line)}
+.inclui li{display:flex;gap:.8rem;align-items:baseline;color:var(--text-secondary);font-size:.98rem}
+.inclui li::before{content:"";flex:none;width:.85rem;height:.45rem;border-left:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);transform:rotate(-45deg) translateY(-3px)}
+.preco{display:flex;justify-content:space-between;align-items:baseline;padding:1.3rem 2rem;border-bottom:1px solid var(--line)}
 .preco span{color:var(--text-secondary)}
 .preco b{font-family:var(--display);font-weight:400;font-size:2.3rem;line-height:1}
 .preco b small{font-family:var(--body);font-size:1rem;color:var(--text-secondary);margin-right:.3rem}
 .card .act{padding:1.6rem 2rem 2rem}
 .card .act .btn{width:100%}
 .card .act p{margin-top:.9rem;font-size:.88rem;color:var(--text-secondary);text-align:center}
+.card .act a:not(.btn){color:var(--accent);text-underline-offset:3px}
+
+/* a cédula */
+.votacao{margin-top:2.4rem;border:1px solid var(--line);padding:1.8rem;background:rgba(11,17,32,.5)}
+.votacao .q{font-family:var(--display);font-size:1.35rem;line-height:1.35;margin:.7rem 0 1.4rem}
+.cedulas{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cedula{position:relative;background:var(--paper);color:var(--paper-ink);border:0;cursor:pointer;padding:1.5rem 1rem;font-family:var(--mono);font-size:.95rem;letter-spacing:.3em;text-transform:uppercase;transition:transform .7s var(--ease-out),opacity .7s var(--ease-out);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.cedula::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(21,28,43,.18)}
+.cedula:hover{transform:translateY(-3px)}
+.votacao.voted .cedula{pointer-events:none}
+.votacao.voted .cedula.chosen{transform:translateY(-6px) scaleY(.5);opacity:0}
+.votacao.voted .cedula:not(.chosen){opacity:.25}
+.urna{margin-top:1.2rem;height:3px;background:var(--line);position:relative;overflow:hidden}
+.urna i{position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--ease-out)}
+.votacao.voted .urna i{transform:scaleX(1)}
+.resultado{margin-top:1rem;min-height:1.6em;font-size:.95rem;color:var(--text-secondary);opacity:0;transition:opacity .6s var(--ease-out) .5s}
+.votacao.voted .resultado{opacity:1}
+.resultado b{color:var(--text-primary);font-weight:500}
 @media (max-width:900px){.ingressos .wrap{grid-template-columns:1fr}}
-@media (max-width:420px){.card .top,.preco,.card .act{padding-left:1.3rem;padding-right:1.3rem}}
+@media (max-width:420px){.card .top,.inclui,.preco,.card .act{padding-left:1.3rem;padding-right:1.3rem}.votacao{padding:1.3rem}}
 
 /* local */
 .local .wrap{display:grid;grid-template-columns:7fr 5fr;border:1px solid var(--line)}
@@ -213,14 +258,17 @@ section{position:relative}
 .faq .side p{margin-top:1.1rem;color:var(--text-secondary);max-width:34ch}
 .q-list{border-top:1px solid var(--line)}
 details{border-bottom:1px solid var(--line)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:1.5rem;align-items:center;padding:1.4rem 0;font-family:var(--display);font-size:1.3rem;line-height:1.3;transition:color .3s var(--ease-out)}
+summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:6rem 1fr 1.5rem;gap:1rem;align-items:baseline;padding:1.4rem 0}
 summary::-webkit-details-marker{display:none}
-summary:hover{color:var(--accent-hover)}
-summary .pm{position:relative;flex:none;width:14px;height:14px}
+summary .ord{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+summary .t{font-family:var(--display);font-size:1.3rem;line-height:1.3;transition:color .3s var(--ease-out)}
+summary:hover .t{color:var(--accent-hover)}
+summary .pm{position:relative;width:14px;height:14px;align-self:center}
 summary .pm::before,summary .pm::after{content:"";position:absolute;left:0;right:0;top:50%;height:1.5px;background:var(--text-secondary);transition:transform .35s var(--ease-out)}
 summary .pm::after{transform:rotate(90deg)}
 details[open] summary .pm::after{transform:rotate(0)}
-details .a{padding:0 2.5rem 1.5rem 0;color:var(--text-secondary);max-width:66ch}
+details .a{padding:0 2.5rem 1.5rem 7rem;color:var(--text-secondary);max-width:70ch}
+@media (max-width:560px){summary{grid-template-columns:1fr 1.5rem}summary .ord{grid-column:1/-1}details .a{padding:0 0 1.4rem}}
 details[open] .a{animation:fadeUp .5s var(--ease-out) both}
 @media (max-width:900px){.faq .wrap{grid-template-columns:1fr}}
 
@@ -294,93 +342,116 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
 </section>
 
-<section class="nums" aria-label="O evento em números">
+<section class="ata" aria-label="O evento em números">
   <div class="wrap">
-    <div class="item"><span class="num" data-count="2">2</span><span class="cap">dias de<br>evento</span></div>
-    <div class="item"><span class="num" data-count="14">14</span><span class="cap">palestrantes</span></div>
-    <div class="item"><span class="num" data-count="2">2</span><span class="cap">júris<br>simulados</span></div>
-    <div class="item"><span class="num" data-count="150">150</span><span class="cap">vagas</span></div>
+    <div class="label"><span class="kicker muted">Ata da sessão</span></div>
+    <div class="item"><span class="num" data-count="2" data-pad="2">02</span><span class="cap">Dias de imersão</span></div>
+    <div class="item"><span class="num" data-count="14">14</span><span class="cap">Palestrantes</span></div>
+    <div class="item"><span class="num" data-count="2" data-pad="2">02</span><span class="cap">Júris simulados</span></div>
+    <div class="item"><span class="num" data-count="150">150</span><span class="cap">Vagas, apenas</span></div>
   </div>
 </section>
 
 <section class="sec evento" id="evento" aria-labelledby="h-evento">
   <div class="wrap">
     <div class="rv">
-      <p class="eyebrow">O evento</p>
+      <p class="kicker">I · O evento</p>
       <h2 id="h-evento">Feito para quem vive o Tribunal do Júri</h2>
     </div>
     <div class="body">
       <p class="big rv">Teoria, prática e experiência real da advocacia criminal, em dois dias de conteúdo.</p>
       <p class="rv">O júri se aprende na tribuna: ouvindo quem atua no plenário, assistindo a um julgamento do começo ao fim e trocando experiência com colegas que enfrentam os mesmos desafios no plenário.</p>
       <div class="pilares">
-        <div class="pilar rv"><h3>Palestras</h3><p>Grandes nomes das ciências criminais falando de técnica, estratégia e vivência no Júri.</p></div>
-        <div class="pilar rv"><h3>Júris simulados</h3><p>Duas disputas completas e realistas, com acusação, defesa e veredito.</p></div>
-        <div class="pilar rv"><h3>Networking</h3><p>Dois dias ao lado de advogados e profissionais que atuam na área criminal.</p></div>
+        <div class="pilar rv"><span class="n">01</span><h3>Palestras</h3><p>Grandes nomes das ciências criminais falando de técnica, estratégia e vivência no Júri.</p></div>
+        <div class="pilar rv"><span class="n">02</span><h3>Júris simulados</h3><p>Duas disputas completas e realistas, com acusação, defesa e veredito.</p></div>
+        <div class="pilar rv"><span class="n">03</span><h3>Networking</h3><p>Dois dias ao lado de advogados e profissionais que atuam na área criminal.</p></div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="sec rito" id="rito" aria-labelledby="h-rito">
+  <span class="fls" aria-hidden="true">FLS. 02</span>
   <div class="wrap">
     <div class="head rv">
       <div>
-        <p class="eyebrow">Júris simulados</p>
+        <p class="kicker">II · Os júris simulados</p>
         <h2 id="h-rito">Uma sessão de julgamento, do sorteio ao veredito</h2>
       </div>
       <p>Nos dois júris simulados, você acompanha cada etapa como ela acontece no plenário, com o tempo correndo e os jurados decidindo.</p>
     </div>
     <div class="timeline" id="timeline">
       <div class="track" aria-hidden="true"><i></i></div>
-      <div class="ato rv"><span class="dot" aria-hidden="true"></span><h3>Sorteio dos jurados</h3><p>Dos 25 jurados convocados, sete são sorteados para o Conselho de Sentença.</p><span class="art">Art. 447 do CPP</span></div>
-      <div class="ato rv"><span class="dot" aria-hidden="true"></span><h3>Instrução em plenário</h3><p>Declarações do ofendido, testemunhas e interrogatório do acusado, diante dos jurados.</p><span class="art">Arts. 473 e 474 do CPP</span></div>
-      <div class="ato rv"><span class="dot" aria-hidden="true"></span><h3>Debates</h3><p>Uma hora e meia para cada parte, mais uma hora de réplica e outra de tréplica.</p><span class="art">Art. 477 do CPP</span></div>
-      <div class="ato rv"><span class="dot" aria-hidden="true"></span><h3>Votação dos quesitos</h3><p>Cada jurado recebe uma cédula com sim e outra com não, e vota em sigilo.</p><span class="art">Art. 486 do CPP</span></div>
+      <div class="ato rv"><span class="dot" aria-hidden="true">01</span><h3>Sorteio dos jurados</h3><p>Dos 25 jurados convocados, sete são sorteados para o Conselho de Sentença.</p><span class="art">Art. 447 do CPP</span></div>
+      <div class="ato rv"><span class="dot" aria-hidden="true">02</span><h3>Instrução em plenário</h3><p>Declarações do ofendido, testemunhas e interrogatório do acusado, diante dos jurados.</p><span class="art">Arts. 473 e 474 do CPP</span></div>
+      <div class="ato rv"><span class="dot" aria-hidden="true">03</span><h3>Debates</h3><p>Uma hora e meia para cada parte, mais uma hora de réplica e outra de tréplica.</p><span class="art">Art. 477 do CPP</span></div>
+      <div class="ato rv"><span class="dot" aria-hidden="true">04</span><h3>Votação dos quesitos</h3><p>Cada jurado recebe uma cédula com sim e outra com não, e vota em sigilo.</p><span class="art">Art. 486 do CPP</span></div>
     </div>
   </div>
 </section>
 
 <section class="sec palestrantes" id="palestrantes" aria-labelledby="h-pal">
   <div class="wrap">
-    <div class="rv">
-      <p class="eyebrow">Palestrantes</p>
-      <h2 id="h-pal">Palestrantes confirmados</h2>
-      <p class="lede">O time completo será divulgado nos próximos dias. Acompanhe os anúncios pelo nosso Instagram.</p>
-      <a class="btn ghost" href="#" data-instagram>Seguir no Instagram</a>
+    <div class="head rv">
+      <div>
+        <p class="kicker">III · Palestrantes</p>
+        <h2 id="h-pal">Palestrantes confirmados</h2>
+      </div>
+      <div>
+        <p class="lede">São 14 nomes das ciências criminais. O primeiro já está confirmado, e os outros 13 serão anunciados nos próximos dias.</p>
+        <a class="btn ghost" href="#" data-instagram>Acompanhar no Instagram</a>
+      </div>
     </div>
-    <div class="anuncio rv">
-      <span class="big">14</span>
-      <p><strong>nomes das ciências criminais</strong>Os nomes serão anunciados em breve, aqui e nas redes do evento.</p>
-    </div>
+    <ul class="cadeiras rv" id="cadeiras" aria-label="Palestrantes">
+      <li class="cadeira conf">
+        <picture>
+          <source srcset="assets/elson-marcelino.webp" type="image/webp">
+          <img src="assets/elson-marcelino.jpg" alt="Dr. Elson Marcelino falando ao microfone em um evento" width="420" height="560" loading="lazy">
+        </picture>
+        <span class="idx">01</span>
+        <span class="who"><span class="st">Confirmado</span><b>Dr. Elson Marcelino</b></span>
+      </li>
+    </ul>
   </div>
 </section>
 
 <section class="sec ingressos" id="ingressos" aria-labelledby="h-ing">
   <div class="wrap">
     <div class="rv">
-      <p class="eyebrow">Ingressos</p>
+      <p class="kicker">IV · Ingressos</p>
       <h2 id="h-ing">Passaporte para os dois dias</h2>
       <p class="lede" style="margin-top:1.1rem">As vagas são limitadas a 150 participantes.</p>
+
+      <div class="votacao" id="votacao">
+        <p class="kicker muted">Quesito único</p>
+        <p class="q">Você estará no plenário da Tertúlia Criminal em 20 e 21 de novembro?</p>
+        <div class="cedulas">
+          <button class="cedula" type="button" data-voto="sim">Sim</button>
+          <button class="cedula" type="button" data-voto="nao">Não</button>
+        </div>
+        <div class="urna" aria-hidden="true"><i></i></div>
+        <p class="resultado" id="resultado" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="card rv" id="passaporte">
+      <div class="top">
+        <h3>Passaporte Tertúlia</h3>
+        <span class="kicker">20 e 21 · nov · 2026</span>
+      </div>
       <ul class="inclui">
         <li>Acesso aos dois dias do evento</li>
-        <li>Palestras com grandes nomes</li>
+        <li>Palestras com grandes nomes das ciências criminais</li>
         <li>Dois júris simulados</li>
         <li>Coffee breaks</li>
         <li>Networking</li>
         <li>Kit oficial Tertúlia</li>
       </ul>
-      <p class="nota">Tem cupom de desconto? Os cupons ficam com os colaboradores do evento. Procure um deles ou <a href="#ingressos" data-whats>fale com a organização no WhatsApp</a>.</p>
-    </div>
-    <div class="card rv">
-      <div class="top">
-        <h3>Passaporte Tertúlia</h3>
-        <p>20 e 21 de novembro de 2026 · Curitiba/PR</p>
-      </div>
       <div class="preco"><span>Meia-entrada</span><b><small>R$</small>327</b></div>
       <div class="preco"><span>Inteira</span><b><small>R$</small>654</b></div>
       <div class="act">
         <a class="btn" href="#ingressos" data-ticket>Comprar passaporte</a>
-        <p>Dúvidas sobre meia-entrada? Fale com a organização.</p>
+        <p>Tem cupom? Procure um colaborador ou <a href="#ingressos" data-whats>chame no WhatsApp</a>.</p>
       </div>
     </div>
   </div>
@@ -395,7 +466,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       </picture>
     </figure>
     <div class="info rv">
-      <p class="eyebrow">Local</p>
+      <p class="kicker">V · O local</p>
       <h2 id="h-local">Auditório do Sindimetal/PR</h2>
       <address>
         <strong>Rua Angelo Greca, 70</strong>
@@ -410,22 +481,22 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 <section class="sec faq" id="duvidas" aria-labelledby="h-faq">
   <div class="wrap">
     <div class="side rv">
-      <p class="eyebrow">Dúvidas</p>
-      <h2 id="h-faq">Perguntas frequentes</h2>
+      <p class="kicker">VI · Quesitos</p>
+      <h2 id="h-faq">Dúvidas frequentes</h2>
       <p>Não encontrou sua resposta? Fale com a organização pelo WhatsApp.</p>
     </div>
     <div class="q-list rv">
-      <details><summary>Quando e onde acontece?<span class="pm" aria-hidden="true"></span></summary>
+      <details><summary><span class="ord">1º quesito</span><span class="t">Quando e onde acontece?</span><span class="pm" aria-hidden="true"></span></summary>
         <div class="a">Nos dias 20 e 21 de novembro de 2026, no Auditório do Sindimetal/PR: Rua Angelo Greca, 70, Atuba, Curitiba/PR, CEP 82630-145.</div></details>
-      <details><summary>O que o passaporte inclui?<span class="pm" aria-hidden="true"></span></summary>
+      <details><summary><span class="ord">2º quesito</span><span class="t">O que o passaporte inclui?</span><span class="pm" aria-hidden="true"></span></summary>
         <div class="a">Acesso aos dois dias, palestras, os dois júris simulados, coffee breaks, networking e o kit oficial Tertúlia.</div></details>
-      <details><summary>Quanto custa?<span class="pm" aria-hidden="true"></span></summary>
+      <details><summary><span class="ord">3º quesito</span><span class="t">Quanto custa?</span><span class="pm" aria-hidden="true"></span></summary>
         <div class="a">Meia-entrada: R$ 327,00. Inteira: R$ 654,00. Para confirmar se você tem direito à meia-entrada, fale com a organização pelo WhatsApp.</div></details>
-      <details><summary>Existe cupom de desconto?<span class="pm" aria-hidden="true"></span></summary>
+      <details><summary><span class="ord">4º quesito</span><span class="t">Existe cupom de desconto?</span><span class="pm" aria-hidden="true"></span></summary>
         <div class="a">Sim. Os cupons ficam com os colaboradores do evento. Procure um deles ou chame a organização no WhatsApp.</div></details>
-      <details><summary>Quem são os palestrantes?<span class="pm" aria-hidden="true"></span></summary>
-        <div class="a">São 14 nomes das ciências criminais. O time completo será divulgado em breve.</div></details>
-      <details><summary>Quantas vagas existem?<span class="pm" aria-hidden="true"></span></summary>
+      <details><summary><span class="ord">5º quesito</span><span class="t">Quem são os palestrantes?</span><span class="pm" aria-hidden="true"></span></summary>
+        <div class="a">São 14 nomes das ciências criminais. O Dr. Elson Marcelino já está confirmado, e os demais serão divulgados em breve.</div></details>
+      <details><summary><span class="ord">6º quesito</span><span class="t">Quantas vagas existem?</span><span class="pm" aria-hidden="true"></span></summary>
         <div class="a">São 150 lugares no auditório, com ingressos limitados.</div></details>
     </div>
   </div>
@@ -520,6 +591,16 @@ const CONFIG = {
   else order.forEach((n,i)=>setTimeout(()=>jurors[n].classList.add('on'),1100+i*280));
   reduce.addEventListener('change',()=>{if(reduce.matches)jurors.forEach(j=>j.classList.add('on'))});
 
+  /* palestrantes a anunciar */
+  const cad=$('#cadeiras');
+  const icon='<svg viewBox="0 0 40 52" aria-hidden="true"><circle cx="20" cy="15" r="9"/><path d="M4 50c0-10 7-17 16-17s16 7 16 17"/></svg>';
+  for(let i=2;i<=14;i++){
+    const li=document.createElement('li');li.className='cadeira';
+    li.innerHTML=`<span class="idx">${String(i).padStart(2,'0')}</span>${icon}<span class="st">A anunciar</span>`;
+    li.setAttribute('aria-label',`Palestrante ${i}, a anunciar`);cad.appendChild(li);
+  }
+  const fill=document.createElement('li');fill.className='cadeira fill';fill.setAttribute('aria-hidden','true');cad.appendChild(fill);
+
   /* entradas */
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -10% 0px'});
   $$('.rv, #fig-local').forEach(el=>io.observe(el));
@@ -527,12 +608,12 @@ const CONFIG = {
   /* contadores */
   const cio=new IntersectionObserver(es=>es.forEach(e=>{
     if(!e.isIntersecting)return; cio.unobserve(e.target);
-    const el=e.target,to=+el.dataset.count;
-    if(reduce.matches){el.textContent=to;return}
+    const el=e.target,to=+el.dataset.count,pad=+(el.dataset.pad||0),fmt=v=>String(v).padStart(pad,'0');
+    if(reduce.matches){el.textContent=fmt(to);return}
     const t0=performance.now(),dur=1200;
-    (function step(t){const k=Math.min(1,(t-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step)})(t0);
+    (function step(t){const k=Math.min(1,(t-t0)/dur);el.textContent=fmt(Math.round(to*(1-Math.pow(1-k,3))));if(k<1)requestAnimationFrame(step)})(t0);
   }),{threshold:.6});
-  $$('[data-count]').forEach(el=>{el.textContent='0';cio.observe(el)});
+  $$('[data-count]').forEach(el=>{el.textContent=String(0).padStart(+(el.dataset.pad||0),'0');cio.observe(el)});
 
   /* linha do rito acompanha o scroll */
   const tl=$('#timeline'),bar=$('.track i',tl),atos=$$('.ato',tl);
@@ -549,6 +630,18 @@ const CONFIG = {
   addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(drawRito)}},{passive:true});
   addEventListener('resize',drawRito); drawRito();
   reduce.addEventListener('change',()=>{lastP=-1;drawRito()});
+
+  /* o voto */
+  const vot=$('#votacao'),res=$('#resultado');
+  $$('.cedula',vot).forEach(b=>b.addEventListener('click',()=>{
+    b.classList.add('chosen');vot.classList.add('voted');
+    if(b.dataset.voto==='sim'){
+      res.innerHTML='<b>Voto registrado.</b> Falta só garantir o seu passaporte.';
+      if(matchMedia('(max-width:900px)').matches)setTimeout(()=>$('#passaporte').scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'start'}),900);
+    }else{
+      res.innerHTML='<b>Voto registrado.</b> Se mudar de ideia, as vagas seguem abertas até se esgotarem.';
+    }
+  }));
 
   document.addEventListener('visibilitychange',()=>document.body.classList.toggle('paused',document.hidden));
 })();
